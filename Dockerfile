@@ -1,6 +1,9 @@
 FROM      ubuntu:14.04.4
 MAINTAINER Oleksander Kutsenko    <olexander.kutsenko@gmail.com>
 
+# Let the conatiner know that there is no tty
+ENV DEBIAN_FRONTEND noninteractive
+
 #Create docker user
 RUN mkdir -p /var/www
 RUN mkdir -p /home/docker
@@ -11,7 +14,9 @@ RUN chown -R docker:www-data /var/www
 RUN chown -R docker:www-data /home/docker
 
 #install Software
+RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d
 RUN apt-get update && apt-get upgrade -y
+RUN dpkg-reconfigure tzdata
 RUN apt-get install -y software-properties-common python-software-properties \
     git git-core vim nano mc nginx screen curl unzip wget \
     supervisor memcached htop tmux zip
@@ -51,7 +56,6 @@ COPY configs/mysql/my.cnf /etc/mysql/my.cnf
 
 # SSH service
 RUN sudo apt-get install -y openssh-server openssh-client
-RUN sudo mkdir /var/run/sshd
 RUN echo 'root:root' | chpasswd
 #change 'pass' to your secret password
 RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
