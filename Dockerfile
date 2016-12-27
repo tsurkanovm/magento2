@@ -64,6 +64,11 @@ RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so
 ENV NOTVISIBLE "in users profile"
 RUN echo "export VISIBLE=now" >> /etc/profile
 
+# capifony
+RUN apt-get install -y rubygems git curl
+RUN gem install net-ssh -v 3.1.1
+RUN gem install capifony -v 2.4.2
+
 #configs bash start
 COPY configs/autostart.sh /root/autostart.sh
 RUN  chmod +x /root/autostart.sh
