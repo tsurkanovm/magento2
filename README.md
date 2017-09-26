@@ -1,4 +1,4 @@
-# Magento 2 docker container
+# Magento 2 docker container environment
 
 # Create container
 ```
