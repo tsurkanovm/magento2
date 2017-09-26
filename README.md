@@ -27,5 +27,5 @@ Go to: Languages & Frameworks > PHP > Debug > DBGp Proxy and set the following s
     Port: 9001
 ```
 # Origin
-[Docker Hub] (https://registry.hub.docker.com/u/eagle88/symfony3/)
-[Git Hub] (https://github.com/WhiteEagle88/symfony3)
+[Docker Hub] (https://registry.hub.docker.com/u/tsurkanovm/magento2/)
+[Git Hub] (https://github.com/tsurkanovm/magento2)
