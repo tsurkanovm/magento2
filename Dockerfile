@@ -27,9 +27,9 @@ RUN apt-get install -y language-pack-en-base
 RUN LC_ALL=en_US.UTF-8 add-apt-repository ppa:ondrej/php
 RUN apt-get update 
 RUN apt-get install -y php7.0 php7.0-cli php7.0-common php7.0-cgi php7.0-curl php7.0-imap
-RUN apt-get install -y php7.0-mysql php7.0-fpm php7.0-gd
+RUN apt-get install -y php7.0-mysql php7.0-fpm php7.0-gd php7.0-intl
 RUN apt-get install -y php7.0-xml php7.0-mbstring php7.0-mcrypt
-RUN apt-get install -y php7.0-dev php7.0-xsl php7.0-zip
+RUN apt-get install -y php7.0-dev php7.0-xsl php7.0-zip php7.0-soap
 RUN pecl install xdebug-2.5.1
 RUN rm /etc/php/7.0/cgi/php.ini
 RUN rm /etc/php/7.0/cli/php.ini
