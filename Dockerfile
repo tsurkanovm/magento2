@@ -66,6 +66,7 @@ RUN echo "export VISIBLE=now" >> /etc/profile
 #configs bash start
 COPY configs/autostart.sh /root/autostart.sh
 RUN  chmod +x /root/autostart.sh
+RUN /root/autostart.sh start
 
 #Install locale
 RUN locale-gen en_US en_US.UTF-8 uk_UA uk_UA.UTF-8
