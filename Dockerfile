@@ -43,14 +43,14 @@ COPY configs/php/xdebug.ini /etc/php/7.0/mods-available/xdebug.ini
 RUN ln -s /etc/php/7.0/mods-available/xdebug.ini /etc/php/7.0/fpm/conf.d/20-xdebug.ini
 RUN ln -s /etc/php/7.0/mods-available/xdebug.ini /etc/php/7.0/cli/conf.d/20-xdebug.ini
 
-#Install Percona Mysql 5.7 server
+#Install Percona Mysql 5.6 server
 RUN wget https://repo.percona.com/apt/percona-release_0.1-4.$(lsb_release -sc)_all.deb
 RUN dpkg -i percona-release_0.1-4.$(lsb_release -sc)_all.deb
 RUN rm percona-release_0.1-4.$(lsb_release -sc)_all.deb
 RUN apt-get update
-RUN echo "percona-server-server-5.7 percona-server-server/root_password password root" | sudo debconf-set-selections
-RUN echo "percona-server-server-5.7 percona-server-server/root_password_again password root" | sudo debconf-set-selections
-RUN apt-get install -y percona-server-server-5.7
+RUN echo "percona-server-server-5.6 percona-server-server/root_password password root" | sudo debconf-set-selections
+RUN echo "percona-server-server-5.6 percona-server-server/root_password_again password root" | sudo debconf-set-selections
+RUN apt-get install -y percona-server-server-5.6
 COPY configs/mysql/my.cnf /etc/mysql/my.cnf
 
 # SSH service
@@ -65,8 +65,8 @@ RUN echo "export VISIBLE=now" >> /etc/profile
 
 #configs bash start
 COPY configs/autostart.sh /root/autostart.sh
-RUN  chmod +x /root/autostart.sh
-RUN /root/autostart.sh start
+RUN chmod +x /root/autostart.sh
+RUN sh /root/autostart.sh
 
 #Install locale
 RUN locale-gen en_US en_US.UTF-8 uk_UA uk_UA.UTF-8
